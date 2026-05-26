@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ranking</title>
+
+    <style>
+
+        body{
+            background:#0f172a;
+            color:white;
+            font-family:Arial;
+            text-align:center;
+        }
+
+        h1{
+            color:#facc15;
+            margin-top:40px;
+        }
+
+        table{
+            margin:auto;
+            margin-top:40px;
+            width:60%;
+            border-collapse:collapse;
+        }
+
+        th{
+            background:#1e293b;
+            padding:15px;
+            font-size:20px;
+        }
+
+        td{
+            background:#334155;
+            padding:15px;
+        }
+
+        tr:hover td{
+            background:#475569;
+        }
+
+        a{
+            color:#38bdf8;
+            font-size:20px;
+            text-decoration:none;
+        }
+          button{
+            margin-top:20px;
+            width:20%;
+            padding:12px;
+            border:none;
+            background:#98b134;
+            color:rgb(17, 1, 1);
+            border-radius:8px;
+            font-size:16px;
+            cursor:pointer;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <h1>
+        🏆 Ranking Global
+    </h1>
+
+    <table>
+
+        <tr>
+            <th>Usuario</th>
+            <th>XP</th>
+        </tr>
+
+        {% for usuario in usuarios %}
+
+        <tr>
+
+            <td>
+                {{ usuario[0] }}
+            </td>
+
+            <td>
+                {{ usuario[1] }}
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <br><br>
+
+    <a href="/dashboard">
+       <button>Volver al Inicio</button> 
+    </a>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+
+    <style>
+
+        body{
+            background:#0f172a;
+            font-family:Arial;
+            color:white;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+
+        .registro{
+            background:#1e293b;
+            padding:40px;
+            border-radius:15px;
+            width:300px;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            margin-top:10px;
+            border:none;
+            border-radius:8px;
+        }
+
+        button{
+            margin-top:20px;
+            width:200%;
+            padding:12px;
+            border:none;
+            background:#8b5cf6;
+            color:white;
+            border-radius:8px;
+            font-size:16px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="registro">
+
+    <h2>Registro</h2>
+
+    <form method="POST">
+
+        <input type="text" name="nombre" placeholder="Nombre">
+
+        <input type="email" name="correo" placeholder="Correo">
+
+        <input type="password" name="password" placeholder="Contraseña">
+
+        <button type="submit">
+            Registrarse
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

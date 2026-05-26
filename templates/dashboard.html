@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <style>
+
+        body{
+            background:#0f172a;
+            color:white;
+            font-family:Arial;
+            margin:0;
+        }
+
+        .menu{
+            background:#1e293b;
+            padding:20px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .contenido{
+            padding:40px;
+        }
+
+        .card{
+            background:#1e293b;
+            padding:30px;
+            border-radius:15px;
+            width:250px;
+            margin-top:20px;
+            transition:0.3s;
+        }
+
+        .card:hover{
+            transform:scale(1.05);
+            background:#334155;
+        }
+
+        h1{
+            color:#38bdf8;
+        }
+
+        .barra{
+            width:400px;
+            height:30px;
+            background:#334155;
+            border-radius:20px;
+            overflow:hidden;
+            margin-top:20px;
+        }
+
+        .progreso{
+            height:100%;
+            background:#22c55e;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="menu">
+
+    <h2>CodeMaster</h2>
+
+   <h3>
+    Bienvenido {{ nombre }}
+   </h3>
+
+</div>
+
+<div class="contenido">
+
+    <h1>Panel Principal</h1>
+
+    <h2>
+        XP: {{ puntos }}
+    </h2>
+
+    <div class="barra">
+
+        <div class="progreso"
+             style="width: {{ puntos }}%;">
+        </div>
+
+    </div>
+
+    <a href="/niveles"
+       style="text-decoration:none; color:white;">
+
+        <div class="card">
+
+            <h2>Niveles</h2>
+
+            <p>
+                Ingresar al modo juego
+            </p>
+
+        </div>
+
+    </a>
+<a href="/ranking"
+   style="text-decoration:none; color:white;">
+
+    <div class="card">
+
+        <h2>🏆 Ranking</h2>
+
+        <p>
+            Ver mejores estudiantes
+        </p>
+
+    </div>
+
+</a>
+</div>
+
+</body>
+</html>
