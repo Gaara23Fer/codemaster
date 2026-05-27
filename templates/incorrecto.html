@@ -1,62 +1,329 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
     <meta charset="UTF-8">
-    <title>Incorrecto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Respuesta Incorrecta | CodeMaster</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Animaciones -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
 
         body{
-            background:#0f172a;
+
+            background:
+            linear-gradient(135deg,#0f172a,#111827,#1e1b4b);
+
+            min-height:100vh;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            overflow:hidden;
+
+            font-family:Arial, Helvetica, sans-serif;
+
+            position:relative;
+
             color:white;
-            text-align:center;
-            font-family:Arial;
-            margin-top:100px;
+
         }
 
-        h1{
-            color:#ef4444;
-            font-size:60px;
+        /* EFECTOS */
+
+        .circulo1{
+
+            position:absolute;
+
+            width:350px;
+            height:350px;
+
+            background:#ef4444;
+
+            border-radius:50%;
+
+            filter:blur(140px);
+
+            top:-120px;
+            left:-120px;
+
+            opacity:0.30;
+
         }
 
-        a{
-            text-decoration:none;
-        }
+        .circulo2{
 
-        button{
+            position:absolute;
+
+            width:350px;
+            height:350px;
+
             background:#8b5cf6;
-            color:white;
-            border:none;
-            padding:15px 40px;
-            border-radius:10px;
-            font-size:20px;
-            cursor:pointer;
+
+            border-radius:50%;
+
+            filter:blur(140px);
+
+            bottom:-120px;
+            right:-120px;
+
+            opacity:0.30;
+
         }
 
-        button:hover{
-            background:#7c3aed;
+        /* CARD */
+
+        .incorrecto-card{
+
+            position:relative;
+            z-index:2;
+
+            width:100%;
+            max-width:650px;
+
+            background:rgba(30,41,59,0.82);
+
+            border-radius:30px;
+
+            padding:50px;
+
+            text-align:center;
+
+            backdrop-filter:blur(14px);
+
+            border:1px solid rgba(255,255,255,0.08);
+
+            box-shadow:
+            0 0 40px rgba(0,0,0,0.35);
+
+        }
+
+        /* ICONO */
+
+        .icono{
+
+            font-size:100px;
+
+            color:#ef4444;
+
+            margin-bottom:20px;
+
+            animation:shake 1.5s infinite;
+
+        }
+
+        @keyframes shake{
+
+            0%{
+                transform:translateX(0);
+            }
+
+            25%{
+                transform:translateX(-8px);
+            }
+
+            50%{
+                transform:translateX(8px);
+            }
+
+            75%{
+                transform:translateX(-8px);
+            }
+
+            100%{
+                transform:translateX(0);
+            }
+
+        }
+
+        /* TEXTOS */
+
+        .titulo{
+
+            font-size:55px;
+
+            font-weight:900;
+
+            color:#ef4444;
+
+            text-shadow:
+            0 0 15px #ef4444,
+            0 0 35px #ef4444;
+
+        }
+
+        .texto{
+
+            margin-top:25px;
+
+            font-size:24px;
+
+            color:#cbd5e1;
+
+        }
+
+        /* BOTONES */
+
+        .btn-reintentar{
+
+            margin-top:35px;
+
+            background:
+            linear-gradient(45deg,#8b5cf6,#7c3aed);
+
+            border:none;
+
+            padding:16px 45px;
+
+            border-radius:15px;
+
+            color:white;
+
+            font-size:20px;
+            font-weight:bold;
+
+            transition:0.4s;
+
+            box-shadow:
+            0 0 20px rgba(139,92,246,0.5);
+
+        }
+
+        .btn-reintentar:hover{
+
+            transform:translateY(-5px);
+
+            box-shadow:
+            0 0 35px rgba(139,92,246,0.9);
+
+        }
+
+        .btn-home{
+
+            margin-top:20px;
+
+            background:#334155;
+
+            border:none;
+
+            padding:15px 40px;
+
+            border-radius:15px;
+
+            color:white;
+
+            font-size:18px;
+            font-weight:bold;
+
+            transition:0.4s;
+
+        }
+
+        .btn-home:hover{
+
+            background:#475569;
+
+            transform:translateY(-4px);
+
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:768px){
+
+            .incorrecto-card{
+
+                margin:20px;
+                padding:35px;
+
+            }
+
+            .titulo{
+                font-size:40px;
+            }
+
+            .texto{
+                font-size:20px;
+            }
+
+            .btn-reintentar,
+            .btn-home{
+
+                width:100%;
+
+            }
+
         }
 
     </style>
 
 </head>
+
 <body>
 
-    <h1>
-        ❌ Respuesta Incorrecta
-    </h1>
+    <!-- EFECTOS -->
 
-    <p>
-        Inténtalo nuevamente
-    </p>
+    <div class="circulo1"></div>
+    <div class="circulo2"></div>
 
-    <a href="{{ volver }}">
+    <!-- CARD -->
 
-        <button>
-            Reintentar
-        </button>
+    <div class="incorrecto-card animate__animated animate__shakeX">
 
-    </a>
+        <div class="icono">
+            <i class="bi bi-x-circle-fill"></i>
+        </div>
+
+        <h1 class="titulo">
+            Respuesta Incorrecta
+        </h1>
+
+        <p class="texto">
+            No te preocupes. Puedes volver a intentarlo y seguir avanzando.
+        </p>
+
+        <!-- BOTÓN REINTENTAR -->
+
+        <a href="{{ volver }}">
+
+            <button class="btn btn-reintentar">
+
+                <i class="bi bi-arrow-repeat"></i>
+
+                Reintentar
+
+            </button>
+
+        </a>
+
+        <br>
+
+        <!-- BOTÓN DASHBOARD -->
+
+        <a href="/dashboard">
+
+            <button class="btn btn-home">
+
+                <i class="bi bi-house-fill"></i>
+
+                Volver al Inicio
+
+            </button>
+
+        </a>
+
+    </div>
 
 </body>
 </html>

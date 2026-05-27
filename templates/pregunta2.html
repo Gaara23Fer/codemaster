@@ -1,88 +1,276 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
     <meta charset="UTF-8">
-    <title>Pregunta 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pregunta 2 | CodeMaster</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Animaciones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
 
         body{
-            background:#0f172a;
-            font-family:Arial;
+            background:
+            linear-gradient(135deg,#0f172a,#111827,#1e1b4b);
+
+            min-height:100vh;
+            overflow:hidden;
+            font-family:Arial, Helvetica, sans-serif;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            position:relative;
             color:white;
-            text-align:center;
-            padding-top:100px;
         }
 
-        .pregunta{
-            background:#1e293b;
-            width:500px;
-            margin:auto;
-            padding:40px;
-            border-radius:20px;
+        /* EFECTOS */
+
+        .circulo1{
+            position:absolute;
+            width:350px;
+            height:350px;
+            background:#38bdf8;
+            border-radius:50%;
+            filter:blur(140px);
+            top:-120px;
+            left:-120px;
+            opacity:0.30;
         }
 
-        button{
+        .circulo2{
+            position:absolute;
+            width:350px;
+            height:350px;
+            background:#8b5cf6;
+            border-radius:50%;
+            filter:blur(140px);
+            bottom:-120px;
+            right:-120px;
+            opacity:0.30;
+        }
+
+        /* CARD */
+
+        .pregunta-card{
+
+            position:relative;
+            z-index:2;
+
             width:100%;
+            max-width:700px;
+
+            background:rgba(30,41,59,0.82);
+
+            border-radius:30px;
+
+            padding:50px;
+
+            text-align:center;
+
+            backdrop-filter:blur(14px);
+
+            border:1px solid rgba(255,255,255,0.08);
+
+            box-shadow:
+            0 0 40px rgba(0,0,0,0.35);
+
+        }
+
+        /* TITULOS */
+
+        .numero{
+            color:#38bdf8;
+            font-size:20px;
+            font-weight:bold;
+            letter-spacing:2px;
+        }
+
+        .titulo{
             margin-top:15px;
-            padding:15px;
+            font-size:42px;
+            font-weight:900;
+            color:white;
+        }
+
+        .pregunta-texto{
+            margin-top:30px;
+            font-size:28px;
+            color:#cbd5e1;
+            line-height:1.5;
+        }
+
+        /* BOTONES */
+
+        .btn-respuesta{
+
+            width:100%;
+            margin-top:18px;
+
+            padding:18px;
+
             border:none;
-            border-radius:10px;
+
+            border-radius:18px;
+
+            font-size:18px;
+            font-weight:bold;
+
+            transition:0.4s;
+
             background:#334155;
             color:white;
-            cursor:pointer;
-            font-size:16px;
+
         }
 
-        button:hover{
-            background:#8b5cf6;
+        .btn-respuesta:hover{
+
+            transform:translateY(-5px);
+
+            background:
+            linear-gradient(45deg,#8b5cf6,#7c3aed);
+
+            box-shadow:
+            0 0 25px rgba(139,92,246,0.7);
+
         }
 
-        h1{
+        /* ICONO */
+
+        .icono{
+            font-size:70px;
             color:#38bdf8;
+            margin-bottom:10px;
+
+            animation:flotar 3s infinite ease-in-out;
+        }
+
+        @keyframes flotar{
+
+            0%{
+                transform:translateY(0px);
+            }
+
+            50%{
+                transform:translateY(-12px);
+            }
+
+            100%{
+                transform:translateY(0px);
+            }
+
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:768px){
+
+            .pregunta-card{
+                margin:20px;
+                padding:35px;
+            }
+
+            .titulo{
+                font-size:34px;
+            }
+
+            .pregunta-texto{
+                font-size:22px;
+            }
+
+            .btn-respuesta{
+                font-size:16px;
+                padding:16px;
+            }
+
         }
 
     </style>
 
 </head>
+
 <body>
 
-<div class="pregunta">
+    <!-- EFECTOS -->
+    <div class="circulo1"></div>
+    <div class="circulo2"></div>
 
-    <h1>Pregunta 2</h1>
+    <!-- CARD -->
 
-    <h2>
-        ¿Qué es una variable?
-    </h2>
+    <div class="pregunta-card animate__animated animate__zoomIn">
 
-    <!-- CORRECTA -->
-    <form action="/correcto2">
+        <div class="icono">
+            <i class="bi bi-code-slash"></i>
+        </div>
 
-        <button type="submit">
-            Un espacio para guardar datos
-        </button>
+        <div class="numero">
+            PREGUNTA 2
+        </div>
 
-    </form>
+        <h1 class="titulo">
+            CodeMaster Quiz
+        </h1>
 
-    <!-- INCORRECTA -->
-    <form action="/incorrecto2">
+        <h2 class="pregunta-texto">
+            ¿Qué es una variable?
+        </h2>
 
-        <button type="submit">
-            Un tipo de virus
-        </button>
+        <!-- RESPUESTA CORRECTA -->
 
-    </form>
+        <form action="/correcto2">
 
-    <!-- INCORRECTA -->
-    <form action="/incorrecto2">
+            <button type="submit"
+                    class="btn btn-respuesta">
 
-        <button type="submit">
-            Una computadora
-        </button>
+                <i class="bi bi-check-circle-fill"></i>
 
-    </form>
+                Un espacio para guardar datos
 
-</div>
+            </button>
+
+        </form>
+
+        <!-- RESPUESTA INCORRECTA -->
+
+        <form action="/incorrecto2">
+
+            <button type="submit"
+                    class="btn btn-respuesta">
+
+                <i class="bi bi-x-circle-fill"></i>
+
+                Un tipo de virus
+
+            </button>
+
+        </form>
+
+        <!-- RESPUESTA INCORRECTA -->
+
+        <form action="/incorrecto2">
+
+            <button type="submit"
+                    class="btn btn-respuesta">
+
+                <i class="bi bi-x-circle-fill"></i>
+
+                Una computadora
+
+            </button>
+
+        </form>
+
+    </div>
 
 </body>
 </html>

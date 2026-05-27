@@ -1,78 +1,247 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
     <meta charset="UTF-8">
-    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | CodeMaster</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Animaciones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
 
         body{
-            background:#0f172a;
-            font-family:Arial;
-            color:white;
+            background:
+            linear-gradient(135deg,#0f172a,#111827,#1e1b4b);
+            min-height:100vh;
+            overflow:hidden;
+            font-family:Arial, Helvetica, sans-serif;
             display:flex;
             justify-content:center;
             align-items:center;
-            height:100vh;
+            position:relative;
         }
 
-        .login{
-            background:#1e293b;
+        .circulo1{
+            position:absolute;
+            width:350px;
+            height:350px;
+            background:#7c3aed;
+            border-radius:50%;
+            filter:blur(130px);
+            top:-100px;
+            left:-100px;
+            opacity:0.4;
+        }
+
+        .circulo2{
+            position:absolute;
+            width:350px;
+            height:350px;
+            background:#38bdf8;
+            border-radius:50%;
+            filter:blur(130px);
+            bottom:-100px;
+            right:-100px;
+            opacity:0.4;
+        }
+
+        .login-card{
+            position:relative;
+            z-index:2;
+            width:100%;
+            max-width:420px;
             padding:40px;
-            border-radius:15px;
-            width:300px;
+            border-radius:25px;
+            background:rgba(30,41,59,0.75);
+            backdrop-filter:blur(15px);
+            box-shadow:
+            0 0 30px rgba(0,0,0,0.4),
+            0 0 20px rgba(139,92,246,0.2);
+            border:1px solid rgba(255,255,255,0.1);
         }
 
-        input{
-            width:100%;
-            padding:12px;
-            margin-top:10px;
-            border:none;
-            border-radius:8px;
-        }
-
-        button{
-            margin-top:20px;
-            width:100%;
-            padding:12px;
-            border:none;
-            background:#8b5cf6;
-            color:white;
-            border-radius:8px;
-            font-size:16px;
-        }
-
-        a{
+        .titulo{
+            text-align:center;
             color:#38bdf8;
+            font-size:40px;
+            font-weight:900;
+            margin-bottom:10px;
+            text-shadow:0 0 15px #38bdf8;
+        }
+
+        .subtitulo{
+            text-align:center;
+            color:#cbd5e1;
+            margin-bottom:30px;
+        }
+
+        .icono{
+            font-size:60px;
+            color:#8b5cf6;
+            display:block;
+            text-align:center;
+            margin-bottom:15px;
+            animation: flotar 3s infinite ease-in-out;
+        }
+
+        @keyframes flotar{
+
+            0%{
+                transform:translateY(0px);
+            }
+
+            50%{
+                transform:translateY(-10px);
+            }
+
+            100%{
+                transform:translateY(0px);
+            }
+
+        }
+
+        .form-control{
+            background:#0f172a;
+            border:none;
+            color:white;
+            padding:14px;
+            border-radius:12px;
+            margin-top:10px;
+        }
+
+        .form-control:focus{
+            background:#0f172a;
+            color:white;
+            box-shadow:0 0 15px rgba(56,189,248,0.5);
+            border:1px solid #38bdf8;
+        }
+
+        .btn-login{
+            width:100%;
+            margin-top:25px;
+            padding:14px;
+            border:none;
+            border-radius:14px;
+            background:linear-gradient(45deg,#8b5cf6,#7c3aed);
+            color:white;
+            font-size:18px;
+            font-weight:bold;
+            transition:0.4s;
+            box-shadow:0 0 20px rgba(139,92,246,0.5);
+        }
+
+        .btn-login:hover{
+            transform:translateY(-4px);
+            box-shadow:0 0 30px rgba(139,92,246,0.9);
+        }
+
+        .registro{
+            text-align:center;
+            margin-top:25px;
+            color:#cbd5e1;
+        }
+
+        .registro a{
+            color:#38bdf8;
+            text-decoration:none;
+            font-weight:bold;
+        }
+
+        .registro a:hover{
+            color:white;
+        }
+
+        @media(max-width:576px){
+
+            .login-card{
+                margin:20px;
+                padding:30px;
+            }
+
+            .titulo{
+                font-size:32px;
+            }
+
         }
 
     </style>
 
 </head>
+
 <body>
 
-<div class="login">
+    <!-- EFECTOS -->
+    <div class="circulo1"></div>
+    <div class="circulo2"></div>
 
-    <h2>Iniciar Sesión</h2>
+    <!-- LOGIN -->
+    <div class="login-card animate__animated animate__fadeInDown">
 
-    <form method="POST">
+        <i class="bi bi-controller icono"></i>
 
-        <input type="email" name="correo" placeholder="Correo">
+        <h1 class="titulo">
+            CodeMaster
+        </h1>
 
-        <input type="password" name="password" placeholder="Contraseña">
+        <p class="subtitulo">
+            Inicia sesión y continúa tu aventura gamer
+        </p>
 
-        <button type="submit">
-            Entrar
-        </button>
+        <form method="POST">
 
-    </form>
+            <div class="mb-3">
 
-    <p>
-        ¿No tienes cuenta?
-        <a href="/registro">Registrarse</a>
-    </p>
+                <input
+                    type="email"
+                    name="correo"
+                    class="form-control"
+                    placeholder="Correo electrónico"
+                    required
+                >
 
-</div>
+            </div>
+
+            <div class="mb-3">
+
+                <input
+                    type="password"
+                    name="password"
+                    class="form-control"
+                    placeholder="Contraseña"
+                    required
+                >
+
+            </div>
+
+            <button type="submit" class="btn btn-login">
+
+                <i class="bi bi-box-arrow-in-right"></i>
+                Entrar
+
+            </button>
+
+        </form>
+
+        <div class="registro">
+
+            ¿No tienes cuenta?
+
+            <a href="/registro">
+                Registrarse
+            </a>
+
+        </div>
+
+    </div>
 
 </body>
 </html>

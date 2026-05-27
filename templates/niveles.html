@@ -1,139 +1,402 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
     <meta charset="UTF-8">
-    <title>Niveles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Niveles | CodeMaster</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Animaciones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
 
         body{
-            background:#0f172a;
+            background:
+            linear-gradient(135deg,#0f172a,#111827,#1e1b4b);
+            min-height:100vh;
             color:white;
-            font-family:Arial;
+            font-family:Arial, Helvetica, sans-serif;
+            overflow-x:hidden;
+            position:relative;
+        }
+
+        /* EFECTOS */
+
+        .circulo1{
+            position:fixed;
+            width:350px;
+            height:350px;
+            background:#7c3aed;
+            border-radius:50%;
+            filter:blur(140px);
+            top:-120px;
+            left:-120px;
+            opacity:0.35;
+            z-index:-1;
+        }
+
+        .circulo2{
+            position:fixed;
+            width:350px;
+            height:350px;
+            background:#38bdf8;
+            border-radius:50%;
+            filter:blur(140px);
+            bottom:-120px;
+            right:-120px;
+            opacity:0.35;
+            z-index:-1;
+        }
+
+        /* TITULO */
+
+        .titulo{
             text-align:center;
-        }
-
-        h1{
-            margin-top:50px;
+            margin-top:60px;
+            font-size:60px;
+            font-weight:900;
             color:#38bdf8;
+            text-shadow:
+            0 0 15px #38bdf8,
+            0 0 35px #38bdf8;
         }
 
-        .nivel{
-            background:#1e293b;
-            width:300px;
-            margin:30px auto;
-            padding:30px;
-            border-radius:20px;
-            transition:0.3s;
+        .subtitulo{
+            text-align:center;
+            color:#cbd5e1;
+            margin-top:15px;
+            font-size:20px;
         }
 
-        .nivel:hover{
-            transform:scale(1.05);
-            background:#334155;
-        }
+        /* CARD */
 
-        a{
+        .nivel-link{
             text-decoration:none;
             color:white;
         }
 
+        .nivel-card{
+            background:rgba(30,41,59,0.8);
+            border-radius:25px;
+            padding:35px;
+            transition:0.4s;
+            border:1px solid rgba(255,255,255,0.08);
+            box-shadow:
+            0 0 25px rgba(0,0,0,0.25);
+
+            height:100%;
+            text-align:center;
+            position:relative;
+            overflow:hidden;
+        }
+
+        .nivel-card:hover{
+            transform:translateY(-10px) scale(1.03);
+
+            box-shadow:
+            0 0 35px rgba(56,189,248,0.35);
+
+            border:1px solid rgba(56,189,248,0.4);
+        }
+
         .bloqueado{
-            background:gray;
-            opacity:0.6;
+            opacity:0.55;
+            filter:grayscale(100%);
+        }
+
+        .bloqueado:hover{
+            transform:none;
+            box-shadow:
+            0 0 25px rgba(0,0,0,0.25);
+        }
+
+        /* ICONOS */
+
+        .icono{
+            font-size:70px;
+            margin-bottom:20px;
+        }
+
+        .verde{
+            color:#22c55e;
+        }
+
+        .amarillo{
+            color:#facc15;
+        }
+
+        .rojo{
+            color:#ef4444;
+        }
+
+        .gris{
+            color:#94a3b8;
+        }
+
+        /* TEXTOS */
+
+        .nivel-titulo{
+            font-size:32px;
+            font-weight:bold;
+            margin-bottom:15px;
+        }
+
+        .nivel-texto{
+            color:#cbd5e1;
+            font-size:18px;
+        }
+
+        .xp{
+            margin-top:20px;
+            font-size:15px;
+            color:#94a3b8;
+        }
+
+        /* BOTON */
+
+        .btn-inicio{
+            margin-top:50px;
+            background:
+            linear-gradient(45deg,#8b5cf6,#7c3aed);
+
+            border:none;
+            padding:16px 40px;
+            border-radius:15px;
+            color:white;
+            font-size:20px;
+            font-weight:bold;
+
+            transition:0.4s;
+
+            box-shadow:
+            0 0 20px rgba(139,92,246,0.5);
+        }
+
+        .btn-inicio:hover{
+            transform:translateY(-5px);
+
+            box-shadow:
+            0 0 35px rgba(139,92,246,0.9);
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:768px){
+
+            .titulo{
+                font-size:42px;
+            }
+
+            .subtitulo{
+                font-size:17px;
+            }
+
+            .nivel-titulo{
+                font-size:26px;
+            }
+
         }
 
     </style>
 
 </head>
+
 <body>
 
-<h1>Niveles</h1>
+    <!-- EFECTOS -->
+    <div class="circulo1"></div>
+    <div class="circulo2"></div>
 
-<!-- NIVEL 1 -->
+    <div class="container py-5">
 
-<a href="/pregunta1">
+        <!-- TITULO -->
 
-    <div class="nivel">
+        <div class="text-center animate__animated animate__fadeInDown">
 
-        <h2>🟢 Nivel 1</h2>
+            <h1 class="titulo">
+                Niveles
+            </h1>
 
-        <p>
-            Conceptos básicos
-        </p>
+            <p class="subtitulo">
+                Supera desafíos y desbloquea nuevos mundos de programación
+            </p>
+
+        </div>
+
+        <!-- NIVELES -->
+
+        <div class="row mt-5 g-4">
+
+            <!-- NIVEL 1 -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <a href="/pregunta1" class="nivel-link">
+
+                    <div class="nivel-card animate__animated animate__zoomIn">
+
+                        <div class="icono verde">
+                            <i class="bi bi-controller"></i>
+                        </div>
+
+                        <div class="nivel-titulo">
+                            🟢 Nivel 1
+                        </div>
+
+                        <div class="nivel-texto">
+                            Conceptos básicos de programación
+                        </div>
+
+                        <div class="xp">
+                            Recompensa: +30 XP
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+            <!-- NIVEL 2 -->
+
+            <div class="col-lg-4 col-md-6">
+
+                {% if nivel1 %}
+
+                <a href="/nivel2" class="nivel-link">
+
+                    <div class="nivel-card animate__animated animate__zoomIn">
+
+                        <div class="icono amarillo">
+                            <i class="bi bi-database-fill"></i>
+                        </div>
+
+                        <div class="nivel-titulo">
+                            🟡 Nivel 2
+                        </div>
+
+                        <div class="nivel-texto">
+                            Aprende consultas SQL básicas
+                        </div>
+
+                        <div class="xp">
+                            Recompensa: +30 XP
+                        </div>
+
+                    </div>
+
+                </a>
+
+                {% else %}
+
+                <div class="nivel-card bloqueado">
+
+                    <div class="icono gris">
+                        <i class="bi bi-lock-fill"></i>
+                    </div>
+
+                    <div class="nivel-titulo">
+                        🔒 Nivel 2
+                    </div>
+
+                    <div class="nivel-texto">
+                        Completa primero el Nivel 1
+                    </div>
+
+                    <div class="xp">
+                        Necesitas 30 XP
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+            <!-- NIVEL 3 -->
+
+            <div class="col-lg-4 col-md-6">
+
+                {% if nivel2 %}
+
+                <a href="/nivel3" class="nivel-link">
+
+                    <div class="nivel-card animate__animated animate__zoomIn">
+
+                        <div class="icono rojo">
+                            <i class="bi bi-cpu-fill"></i>
+                        </div>
+
+                        <div class="nivel-titulo">
+                            🔴 Nivel 3
+                        </div>
+
+                        <div class="nivel-texto">
+                            Domina SQL avanzado y optimización
+                        </div>
+
+                        <div class="xp">
+                            Recompensa: +50 XP
+                        </div>
+
+                    </div>
+
+                </a>
+
+                {% else %}
+
+                <div class="nivel-card bloqueado">
+
+                    <div class="icono gris">
+                        <i class="bi bi-lock-fill"></i>
+                    </div>
+
+                    <div class="nivel-titulo">
+                        🔒 Nivel 3
+                    </div>
+
+                    <div class="nivel-texto">
+                        Completa primero el Nivel 2
+                    </div>
+
+                    <div class="xp">
+                        Necesitas 60 XP
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <!-- BOTON -->
+
+        <div class="text-center">
+
+            <a href="/dashboard">
+
+                <button class="btn btn-inicio">
+
+                    <i class="bi bi-house-door-fill"></i>
+                    Volver al Inicio
+
+                </button>
+
+            </a>
+
+        </div>
 
     </div>
 
-</a>
-
-<!-- NIVEL 2 -->
-
-{% if nivel1 %}
-
-<a href="/nivel2">
-
-    <div class="nivel">
-
-        <h2>🟡 Nivel 2</h2>
-
-        <p>
-            SQL básico
-        </p>
-
-    </div>
-
-</a>
-
-{% else %}
-
-<div class="nivel bloqueado">
-
-    <h2>🔒 Nivel 2</h2>
-
-    <p>
-        Necesitas 30 XP
-    </p>
-
-</div>
-
-{% endif %}
-
-<!-- NIVEL 3 -->
-
-{% if nivel2 %}
-
-<a href="/nivel3">
-
-    <div class="nivel">
-
-        <h2>🔴 Nivel 3</h2>
-
-        <p>
-            SQL avanzado
-        </p>
-
-    </div>
-
-</a>
-
-{% else %}
-
-<div class="nivel bloqueado">
-
-    <h2>🔒 Nivel 3</h2>
-
-    <p>
-        Necesitas 60 XP
-    </p>
-
-</div>
-
-{% endif %}
-<a href="/dashboard">
-
-    <button>
-        🏠 Volver al inicio
-    </button>
-
-</a>
 </body>
 </html>

@@ -1,71 +1,259 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
     <meta charset="UTF-8">
-    <title>Registro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registro | CodeMaster</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Animaciones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
 
         body{
-            background:#0f172a;
-            font-family:Arial;
-            color:white;
+            background:
+            linear-gradient(135deg,#0f172a,#111827,#1e1b4b);
+            min-height:100vh;
+            overflow:hidden;
+            font-family:Arial, Helvetica, sans-serif;
             display:flex;
             justify-content:center;
             align-items:center;
-            height:100vh;
+            position:relative;
         }
 
-        .registro{
-            background:#1e293b;
-            padding:40px;
-            border-radius:15px;
-            width:300px;
+        .circulo1{
+            position:absolute;
+            width:350px;
+            height:350px;
+            background:#7c3aed;
+            border-radius:50%;
+            filter:blur(130px);
+            top:-100px;
+            left:-100px;
+            opacity:0.4;
         }
 
-        input{
+        .circulo2{
+            position:absolute;
+            width:350px;
+            height:350px;
+            background:#38bdf8;
+            border-radius:50%;
+            filter:blur(130px);
+            bottom:-100px;
+            right:-100px;
+            opacity:0.4;
+        }
+
+        .registro-card{
+            position:relative;
+            z-index:2;
             width:100%;
-            padding:12px;
-            margin-top:10px;
-            border:none;
-            border-radius:8px;
+            max-width:430px;
+            padding:40px;
+            border-radius:25px;
+            background:rgba(30,41,59,0.75);
+            backdrop-filter:blur(15px);
+            box-shadow:
+            0 0 30px rgba(0,0,0,0.4),
+            0 0 20px rgba(56,189,248,0.2);
+            border:1px solid rgba(255,255,255,0.1);
         }
 
-        button{
-            margin-top:20px;
-            width:200%;
-            padding:12px;
+        .titulo{
+            text-align:center;
+            color:#38bdf8;
+            font-size:40px;
+            font-weight:900;
+            margin-bottom:10px;
+            text-shadow:0 0 15px #38bdf8;
+        }
+
+        .subtitulo{
+            text-align:center;
+            color:#cbd5e1;
+            margin-bottom:30px;
+        }
+
+        .icono{
+            font-size:60px;
+            color:#8b5cf6;
+            display:block;
+            text-align:center;
+            margin-bottom:15px;
+            animation: flotar 3s infinite ease-in-out;
+        }
+
+        @keyframes flotar{
+
+            0%{
+                transform:translateY(0px);
+            }
+
+            50%{
+                transform:translateY(-10px);
+            }
+
+            100%{
+                transform:translateY(0px);
+            }
+
+        }
+
+        .form-control{
+            background:#0f172a;
             border:none;
-            background:#8b5cf6;
             color:white;
-            border-radius:8px;
-            font-size:16px;
+            padding:14px;
+            border-radius:12px;
+            margin-top:10px;
+        }
+
+        .form-control:focus{
+            background:#0f172a;
+            color:white;
+            box-shadow:0 0 15px rgba(56,189,248,0.5);
+            border:1px solid #38bdf8;
+        }
+
+        .btn-registro{
+            width:100%;
+            margin-top:25px;
+            padding:14px;
+            border:none;
+            border-radius:14px;
+            background:linear-gradient(45deg,#38bdf8,#0ea5e9);
+            color:white;
+            font-size:18px;
+            font-weight:bold;
+            transition:0.4s;
+            box-shadow:0 0 20px rgba(56,189,248,0.5);
+        }
+
+        .btn-registro:hover{
+            transform:translateY(-4px);
+            box-shadow:0 0 30px rgba(56,189,248,0.9);
+        }
+
+        .login-link{
+            text-align:center;
+            margin-top:25px;
+            color:#cbd5e1;
+        }
+
+        .login-link a{
+            color:#38bdf8;
+            text-decoration:none;
+            font-weight:bold;
+        }
+
+        .login-link a:hover{
+            color:white;
+        }
+
+        @media(max-width:576px){
+
+            .registro-card{
+                margin:20px;
+                padding:30px;
+            }
+
+            .titulo{
+                font-size:32px;
+            }
+
         }
 
     </style>
 
 </head>
+
 <body>
 
-<div class="registro">
+    <!-- EFECTOS -->
+    <div class="circulo1"></div>
+    <div class="circulo2"></div>
 
-    <h2>Registro</h2>
+    <!-- REGISTRO -->
+    <div class="registro-card animate__animated animate__fadeInUp">
 
-    <form method="POST">
+        <i class="bi bi-person-plus-fill icono"></i>
 
-        <input type="text" name="nombre" placeholder="Nombre">
+        <h1 class="titulo">
+            Crear Cuenta
+        </h1>
 
-        <input type="email" name="correo" placeholder="Correo">
+        <p class="subtitulo">
+            Únete a CodeMaster y comienza tu aventura gamer
+        </p>
 
-        <input type="password" name="password" placeholder="Contraseña">
+        <form method="POST">
 
-        <button type="submit">
-            Registrarse
-        </button>
+            <div class="mb-3">
 
-    </form>
+                <input
+                    type="text"
+                    name="nombre"
+                    class="form-control"
+                    placeholder="Nombre de usuario"
+                    required
+                >
 
-</div>
+            </div>
+
+            <div class="mb-3">
+
+                <input
+                    type="email"
+                    name="correo"
+                    class="form-control"
+                    placeholder="Correo electrónico"
+                    required
+                >
+
+            </div>
+
+            <div class="mb-3">
+
+                <input
+                    type="password"
+                    name="password"
+                    class="form-control"
+                    placeholder="Contraseña"
+                    required
+                >
+
+            </div>
+
+            <button type="submit" class="btn btn-registro">
+
+                <i class="bi bi-rocket-takeoff-fill"></i>
+                Registrarse
+
+            </button>
+
+        </form>
+
+        <div class="login-link">
+
+            ¿Ya tienes cuenta?
+
+            <a href="/login">
+                Iniciar sesión
+            </a>
+
+        </div>
+
+    </div>
 
 </body>
 </html>
