@@ -1,10 +1,13 @@
 from flask import Flask, render_template, request, redirect, session
 import mysql.connector
 import os
+
 app = Flask(__name__)
 app.secret_key = "codemaster"
 
+# =========================
 # CONEXIÓN MYSQL
+# =========================
 
 conexion = mysql.connector.connect(
 
@@ -24,12 +27,18 @@ conexion = mysql.connector.connect(
 
 cursor = conexion.cursor(buffered=True)
 
+# =========================
 # INICIO
+# =========================
+
 @app.route('/')
 def inicio():
     return render_template('index.html')
 
+# =========================
 # LOGIN
+# =========================
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 
@@ -62,9 +71,15 @@ def login():
 
     return render_template('login.html')
 
+# =========================
 # DASHBOARD
+# =========================
+
 @app.route('/dashboard')
 def dashboard():
+
+    if 'usuario_id' not in session:
+        return redirect('/login')
 
     usuario_id = session['usuario_id']
 
@@ -89,7 +104,10 @@ def dashboard():
         nombre=session['usuario_nombre']
     )
 
+# =========================
 # RANKING
+# =========================
+
 @app.route('/ranking')
 def ranking():
 
@@ -108,9 +126,15 @@ def ranking():
         usuarios=usuarios
     )
 
+# =========================
 # NIVELES
+# =========================
+
 @app.route('/niveles')
 def niveles():
+
+    if 'usuario_id' not in session:
+        return redirect('/login')
 
     usuario_id = session['usuario_id']
 
@@ -142,9 +166,15 @@ def niveles():
         nivel2=nivel2
     )
 
+# =========================
 # PREGUNTA 1
+# =========================
+
 @app.route('/pregunta1')
 def pregunta1():
+
+    if 'usuario_id' not in session:
+        return redirect('/login')
 
     usuario_id = session['usuario_id']
 
@@ -158,38 +188,51 @@ def pregunta1():
 
     resultado = cursor.fetchone()
 
-    # SI YA TERMINÓ NIVEL 1
     if resultado and resultado[0] == 1:
         return redirect('/nivel2')
 
     return render_template('pregunta1.html')
 
-# RESPUESTA CORRECTA 1
+# =========================
+# CORRECTO 1
+# =========================
+
 @app.route('/correcto')
 def correcto():
 
     return render_template('correcto.html')
 
-# RESPUESTA INCORRECTA
-
+# =========================
 # PREGUNTA 2
+# =========================
+
 @app.route('/pregunta2')
 def pregunta2():
 
     return render_template('pregunta2.html')
 
-# RESPUESTA CORRECTA 2
+# =========================
+# CORRECTO 2
+# =========================
+
 @app.route('/correcto2')
 def correcto2():
 
     return render_template('correcto2.html')
 
+# =========================
 # PREGUNTA 3
+# =========================
+
 @app.route('/pregunta3')
 def pregunta3():
 
     return render_template('pregunta3.html')
+
+# =========================
 # INCORRECTO 1
+# =========================
+
 @app.route('/incorrecto1')
 def incorrecto1():
 
@@ -198,7 +241,10 @@ def incorrecto1():
         volver='/pregunta1'
     )
 
+# =========================
 # INCORRECTO 2
+# =========================
+
 @app.route('/incorrecto2')
 def incorrecto2():
 
@@ -207,7 +253,10 @@ def incorrecto2():
         volver='/pregunta2'
     )
 
+# =========================
 # INCORRECTO 3
+# =========================
+
 @app.route('/incorrecto3')
 def incorrecto3():
 
@@ -215,9 +264,16 @@ def incorrecto3():
         'incorrecto.html',
         volver='/pregunta3'
     )
+
+# =========================
 # FINAL NIVEL 1
+# =========================
+
 @app.route('/final')
 def final():
+
+    if 'usuario_id' not in session:
+        return redirect('/login')
 
     usuario_id = session['usuario_id']
 
@@ -231,7 +287,6 @@ def final():
 
     resultado = cursor.fetchone()
 
-    # SOLO DA XP UNA VEZ
     if resultado and resultado[0] == 0:
 
         sql_update = """
@@ -247,15 +302,27 @@ def final():
 
     return redirect('/nivel2')
 
+# =========================
 # NIVEL 2
+# =========================
+
 @app.route('/nivel2')
 def nivel2():
 
     return render_template('nivel2.html')
+
+# =========================
+# PREGUNTA 4
+# =========================
+
 @app.route('/pregunta4')
 def pregunta4():
 
     return render_template('pregunta4.html')
+
+# =========================
+# CORRECTO 4
+# =========================
 
 @app.route('/correcto4')
 def correcto4():
@@ -274,6 +341,10 @@ def correcto4():
 
     return render_template('correcto4.html')
 
+# =========================
+# INCORRECTO 4
+# =========================
+
 @app.route('/incorrecto4')
 def incorrecto4():
 
@@ -282,7 +353,10 @@ def incorrecto4():
         volver='/pregunta4'
     )
 
+# =========================
 # REGISTRO
+# =========================
+
 @app.route('/registro', methods=['GET', 'POST'])
 def registro():
 
@@ -292,7 +366,6 @@ def registro():
         correo = request.form['correo']
         password = request.form['password']
 
-        # VERIFICAR CORREO
         sql_verificar = """
         SELECT *
         FROM usuarios
@@ -306,7 +379,6 @@ def registro():
         if usuario_existente:
             return "Este correo ya está registrado"
 
-        # INSERTAR USUARIO
         sql = """
         INSERT INTO usuarios(nombre, correo, password)
         VALUES(%s,%s,%s)
@@ -322,5 +394,14 @@ def registro():
 
     return render_template('registro.html')
 
+# =========================
+# RUN APP
+# =========================
+
 if __name__ == '__main__':
-    app.run(debug=True)
+
+    app.run(
+        host='0.0.0.0',
+        port=int(os.environ.get('PORT', 5000)),
+        debug=True
+    )
