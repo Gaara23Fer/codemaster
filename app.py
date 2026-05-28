@@ -21,7 +21,9 @@ conexion = mysql.connector.connect(
 
     database=os.getenv("DB_NAME", "codemaster"),
 
-    autocommit=True
+  autocommit=True,
+
+    ssl_disabled=False
 
 )
 
